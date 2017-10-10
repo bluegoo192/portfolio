@@ -13,8 +13,8 @@ router.get('/api/search', async function(req, res, next) {
 });
 
 router.post('/api/newproject', async function(req, res, next) {
-  if (req.headers.Authorization !== "lpkoji") {
-    res.send(401);
+  if (req.headers.authorization !== "lpkoji") {
+    res.sendStatus(401);
     return;
   }
   let newProject = new Project(req.body.project);
