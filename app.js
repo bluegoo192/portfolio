@@ -8,11 +8,20 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var mongoose = require('mongoose');
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// database connection setup
+mongoose.Promise = global.Promise; // so mongoose uses native promises
+mongoose.connect(
+  'mongodb://me:dyftlitp@ds040877.mlab.com:40877/workexperience',
+  { useMongoClient: true }
+);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
