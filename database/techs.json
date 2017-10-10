@@ -1,9 +1,37 @@
 {
-  "javascript": [
-    "js"
-  ],
-  "c++": [
-    "cplusplus"
-  ],
-  "java": []
+  "javascript": {
+    "pretty_name": "Javascript",
+    "level": 1,
+    "aliases": ["js"]
+  },
+  "node": {
+    "pretty_name": "Node JS",
+    "level": 1,
+    "aliases": ["nodejs","node.js"]
+  },
+  "vue": {
+    "pretty_name": "Vue JS",
+    "level": 1,
+    "aliases": ["vue.js","vuejs"]
+  },
+  "express": {
+    "pretty_name": "Express JS",
+    "level": 2,
+    "aliases": ["express.js","expressjs"]
+  },
+  "mongo": {
+    "pretty_name": "Mongo DB",
+    "level": 1,
+    "aliases": ["mongodb"]
+  },
+  "pug": {
+    "pretty_name": "Pug",
+    "level": 3,
+    "aliases": ["jade"]
+  },
+  "stylus": {
+    "pretty_name": "Stylus",
+    "level": 4,
+    "aliases": []
+  }
 }

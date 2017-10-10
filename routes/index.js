@@ -13,13 +13,14 @@ router.get('/api/search', async function(req, res, next) {
 });
 
 router.post('/api/newproject', async function(req, res, next) {
-  let newProject = new Project({
-    name: "test",
-    techstack: ['c++','javascript']
-  });
+  if (req.headers.Authorization !== "lpkoji") {
+    res.send(401);
+    return;
+  }
+  let newProject = new Project(req.body.project);
   newProject.save(function (err, project) {
     if (err) {
-      res.send(err);
+      res.status(400).send(err);
     } else {
       res.send(project);
     }

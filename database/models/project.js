@@ -3,7 +3,12 @@ const validTechs = require('../techs.json');
 
 const projectSchema = mongoose.Schema({
   name: String,
-  description: String,
+  short_description: String,
+  link: String,
+  github_link: String,
+  full_description: String,
+  main_image_link: String,
+  images: Array,
   techstack: {
     type: Array,
     validate: {
