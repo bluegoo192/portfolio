@@ -33,5 +33,30 @@
     "pretty_name": "Stylus",
     "level": 4,
     "aliases": []
+  },
+  "react": {
+    "pretty_name": "React",
+    "level": 1,
+    "aliases": []
+  },
+  "reactnative": {
+    "pretty_name": "React Native",
+    "level": 2,
+    "aliases": ["react", "react native","react-native"]
+  },
+  "expo": {
+    "pretty_name": "Expo.io",
+    "level": 2,
+    "aliases": ["expo","exponent","expoio","expo.io"]
+  },
+  "react": {
+    "pretty_name": "React",
+    "level": 1,
+    "aliases": []
+  },
+  "blockchain": {
+    "pretty_name": "Various blockchain technologies",
+    "level": 0,
+    "aliases": ["ether","bitcoin","ethereum"]
   }
 }
