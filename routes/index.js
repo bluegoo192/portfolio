@@ -8,11 +8,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/api/search', async function(req, res, next) {
-  res.send('hi');
+router.get('/api/projects/search', async function(req, res, next) {
+  console.log(JSON.stringify(req.query));
+  if (typeof req.query.uses === 'undefined') {
+    res.status(400).send("You must specify a tech that the project uses");
+  } else {
+    let projects = await Project.find({ 'techstack': req.query.uses });
+    res.send(projects);
+  }
 });
 
-router.post('/api/newproject', async function(req, res, next) {
+router.post('/api/projects/new', async function(req, res, next) {
   if (req.headers.authorization !== "lpkoji") {
     res.sendStatus(401);
     return;

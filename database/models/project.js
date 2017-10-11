@@ -10,7 +10,7 @@ const projectSchema = mongoose.Schema({
   main_image_link: String,
   images: Array,
   techstack: {
-    type: Array,
+    type: [String],
     validate: {
       validator: function (techs) {
         for (tech of techs) {
