@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-const Project = require('../database/models/project.js')
+const Project = require('../database/models/project.js');
+const secrets = require('../secrets.json');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,7 +20,7 @@ router.get('/api/projects/search', async function(req, res, next) {
 });
 
 router.post('/api/projects/new', async function(req, res, next) {
-  if (req.headers.authorization !== "lpkoji") {
+  if (req.headers.authorization !== secrets.password) {
     res.sendStatus(401);
     return;
   }
