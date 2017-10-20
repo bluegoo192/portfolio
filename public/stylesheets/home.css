@@ -1,0 +1,16 @@
+#maintext h1 {
+  display: inline-block;
+  font-size: 3em;
+}
+#maintext h1.large {
+  font-size: 9em;
+  margin-right: 24px;
+}
+#subtitle {
+  width: 100%;
+}
+#subtitle h2 {
+  width: 100%;
+  text-align: justify;
+  text-justify: inter-word;
+}
