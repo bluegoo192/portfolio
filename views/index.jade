@@ -1,14 +1,21 @@
 extends layout
 
 block content
-  .screen.flex.center-flex-column
-    .test
-      #maintext
-        h1.large Hi.
-        h1#intro I'm #[br] Arthur
-      #subtitle
-        h2 I like computer stuff.
-  .screen.flex.center-flex-column
-    .content
-      h1 Pick my brain
-      input#search(placeholder="Search skills and languages")
+  #app
+    .screen.flex.center-flex-column
+      .test
+        #maintext
+          h1.large Hi.
+          h1#intro I'm #[br] Arthur
+        #subtitle
+          h2 I like computer stuff.
+    .screen
+      .content.center
+        h1 Pick my brain
+        input#search(v-model.trim="query" placeholder="Search skills and languages")
+        #results(v-if="query.length > 0")
+          ul
+            li(v-for="suggestion of suggestions") {{ suggestion }}
+      
+block scripts
+  script(src='/javascripts/index.js')
