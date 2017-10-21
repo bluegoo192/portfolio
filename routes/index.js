@@ -9,6 +9,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/api/techs', function(req, res, next) {
+  const techs = require('../database/techs.json');
+  res.json(techs);
+  res.status(200);
+});
+
 router.get('/api/projects/search', async function(req, res, next) {
   console.log(JSON.stringify(req.query));
   if (typeof req.query.uses === 'undefined') {
