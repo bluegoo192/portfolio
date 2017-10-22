@@ -20,12 +20,23 @@
 
 #searchbox
   padding: 12px
+  border-top-left-radius: 2px
+  border-top-right-radius: 2px
   padding-bottom: 4px
   background-color: white-color
   flex-wrap: wrap
 
-li.suggestion:first-child
-  background-color: #fff
+#results
+  margin-top: 4px
+  background-color: white-color
+  border-radius: 2px
+
+li.suggestion
+  padding: 4px 8px
+
+  &:first-child
+    background-color: theme-color
+    color: white-color
 
 .filter
   padding: 4px 8px

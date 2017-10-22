@@ -16,12 +16,23 @@
 }
 #searchbox {
   padding: 12px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
   padding-bottom: 4px;
   background-color: #f9fafb;
   flex-wrap: wrap;
 }
+#results {
+  margin-top: 4px;
+  background-color: #f9fafb;
+  border-radius: 2px;
+}
+li.suggestion {
+  padding: 4px 8px;
+}
 li.suggestion:first-child {
-  background-color: #fff;
+  background-color: #1476fb;
+  color: #f9fafb;
 }
 .filter {
   padding: 4px 8px;
