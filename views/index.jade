@@ -12,9 +12,9 @@ block content
     .screen
       .content.center
         // h1 Pick my brain
-        #searchbox
+        #searchbox.flex
           ul
-            li.flex(v-for="(item, index) of filters")
+            li.filter(v-for="(item, index) of filters")
               span {{ item.pretty_name }}
               span.close(@click="remove(index)") x
           input#search(

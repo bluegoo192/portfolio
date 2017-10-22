@@ -7,12 +7,28 @@
   margin-right: 24px;
 }
 #search {
-  padding: 12px;
   font-size: 1em;
   width: 100%;
   border-radius: 4px;
   border: none;
+  background-color: rgba(0,0,0,0);
+}
+#searchbox {
+  padding: 12px;
+  background-color: #f9fafb;
 }
 li.suggestion:first-child {
   background-color: #fff;
+}
+li.filter {
+  padding: 4px 8px;
+  background-color: #1476fb;
+  border-radius: 2px;
+  display: inline;
+  color: #f9fafb;
+  margin-right: 8px;
+}
+li.filter span.close {
+  margin-left: 8px;
+  cursor: pointer;
 }
