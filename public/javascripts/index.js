@@ -15,7 +15,13 @@ var app = new Vue({
         .catch(function (error) { console.log(error); });
     },
     addFilter: function () {
-      if (this.suggestions.length > 0) this.filters.push(this.suggestions.shift());
+      if (this.suggestions.length > 0) {
+        this.filters.push(this.suggestions.shift());
+        this.query = ''
+      }
+    },
+    deleteFilter: function () {
+      if (this.filters.length > 0 && this.query.length === 0) this.filters.pop();
     },
     remove: function (index) {
       this.filters.splice(index, 1);
@@ -35,6 +41,9 @@ var app = new Vue({
         }
         return false;
       }).map(function(key) { return techs[key]; });
+    },
+    searchPlaceholder: function () {
+      return (this.filters.length > 0) ? '' : "Search skills and languages";
     }
   }
 })

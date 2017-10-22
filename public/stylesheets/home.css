@@ -8,9 +8,9 @@
 }
 #search {
   font-size: 1em;
-  width: 100%;
   border-radius: 4px;
   border: none;
+  width: 100%;
   background-color: rgba(0,0,0,0);
 }
 #searchbox {
@@ -26,6 +26,7 @@ li.filter {
   border-radius: 2px;
   display: inline;
   color: #f9fafb;
+  box-sizing: border-box;
   margin-right: 8px;
 }
 li.filter span.close {

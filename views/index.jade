@@ -18,8 +18,8 @@ block content
               span {{ item.pretty_name }}
               span.close(@click="remove(index)") x
           input#search(
-            autocomplete="off" v-model.trim="query" @keyup.enter="addFilter"
-            placeholder="Search skills and languages")
+            autocomplete="off" v-model.trim="query" @keyup.enter="addFilter" @keyup.delete="deleteFilter"
+            v-bind:placeholder="searchPlaceholder")
         #results(v-if="query.length > 0")
           ul
             li.suggestion(v-for="suggestion of suggestions") {{ suggestion.pretty_name }}
