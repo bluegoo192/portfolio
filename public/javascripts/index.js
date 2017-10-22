@@ -17,15 +17,20 @@ var app = new Vue({
   computed: {
     suggestions: function () {
       if (techs === null) {
+        console.log("ret null");
         return []; // if techs haven't loaded yet
       }
       let query = this.query.toLowerCase();
       let matches = Object.keys(techs).filter(function (techKey) {
         if (techs[techKey].pretty_name.toLowerCase().startsWith(query)) return true;
+        if (techKey.startsWith(query)) return true;
+        // if (techs[techKey].pretty_name.toLowerCase().startsWith(query)) return true;
         for (alias of techs[techKey].aliases) {
           if (alias.toLowerCase().startsWith(query)) return true;
         }
         return false;
+      }).map(function(key, index, array) {
+        return techs[key];
       });
       console.log(matches);
       return matches;

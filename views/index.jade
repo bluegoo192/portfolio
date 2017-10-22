@@ -15,7 +15,7 @@ block content
         input#search(autocomplete="off" v-model.trim="query" placeholder="Search skills and languages")
         #results(v-if="query.length > 0")
           ul
-            li(v-for="suggestion of suggestions") {{ suggestion }}
+            li(v-for="suggestion of suggestions") {{ suggestion.pretty_name }}
       
 block scripts
   script(src='/javascripts/index.js')
