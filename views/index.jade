@@ -14,7 +14,9 @@ block content
         // h1 Pick my brain
         #searchbox
           ul
-            li(v-for="item of filters") {{ item.pretty_name }}
+            li.flex(v-for="(item, index) of filters")
+              span {{ item.pretty_name }}
+              span.close(@click="remove(index)") x
           input#search(
             autocomplete="off" v-model.trim="query" @keyup.enter="addFilter"
             placeholder="Search skills and languages")

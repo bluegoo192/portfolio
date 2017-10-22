@@ -16,6 +16,9 @@ var app = new Vue({
     },
     addFilter: function () {
       if (this.suggestions.length > 0) this.filters.push(this.suggestions.shift());
+    },
+    remove: function (index) {
+      this.filters.splice(index, 1);
     }
   },
   computed: {

@@ -27,3 +27,6 @@ html {
   flex-direction: column;
   justify-content: center;
 }
+li {
+  list-style: none;
+}
