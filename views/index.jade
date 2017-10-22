@@ -12,10 +12,11 @@ block content
     .screen
       .content.center
         h1 Pick my brain
-        input#search(v-model.trim="query" placeholder="Search skills and languages")
+        input#search(autocomplete="off" v-model.trim="query" placeholder="Search skills and languages")
         #results(v-if="query.length > 0")
           ul
             li(v-for="suggestion of suggestions") {{ suggestion }}
       
 block scripts
   script(src='/javascripts/index.js')
+  script(async, defer, src="https://unpkg.com/axios/dist/axios.min.js", onload="app.loadTechs()")
