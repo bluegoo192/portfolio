@@ -13,3 +13,6 @@
   border-radius: 4px;
   border: none;
 }
+li.suggestion:first-child {
+  background-color: #fff;
+}

@@ -5,35 +5,33 @@ let techs = null;
 var app = new Vue({
   el: '#app',
   data: {
-    query: ''
+    query: '',
+    filters: []
   },
   methods: {
     loadTechs: function () {
       axios.get('/api/techs')
         .then(function (response) { techs = response.data; })
         .catch(function (error) { console.log(error); });
+    },
+    addFilter: function () {
+      if (this.suggestions.length > 0) this.filters.push(this.suggestions.shift());
     }
   },
   computed: {
     suggestions: function () {
-      if (techs === null) {
-        console.log("ret null");
-        return []; // if techs haven't loaded yet
-      }
+      if (techs === null) { return []; }
       let query = this.query.toLowerCase();
-      let matches = Object.keys(techs).filter(function (techKey) {
+      let self = this;
+      return Object.keys(techs).filter(function (techKey) {
+        if (self.filters.includes(techs[techKey])) return false;
         if (techs[techKey].pretty_name.toLowerCase().startsWith(query)) return true;
         if (techKey.startsWith(query)) return true;
-        // if (techs[techKey].pretty_name.toLowerCase().startsWith(query)) return true;
         for (alias of techs[techKey].aliases) {
           if (alias.toLowerCase().startsWith(query)) return true;
         }
         return false;
-      }).map(function(key, index, array) {
-        return techs[key];
-      });
-      console.log(matches);
-      return matches;
+      }).map(function(key) { return techs[key]; });
     }
   }
 })
