@@ -18,7 +18,7 @@ block content
               span {{ item.pretty_name }}
               span.close(@click="remove(index)") x
           input#search(
-            autocomplete="off" v-model.trim="query" @keyup.enter="addFilter" @keyup.delete="deleteFilter"
+            autocomplete="off" v-model.trim="query" @keyup.enter="addFilter" v-on:keydown.delete="deleteFilter"
             v-bind:placeholder="searchPlaceholder")
         #results(v-if="query.length > 0")
           ul
