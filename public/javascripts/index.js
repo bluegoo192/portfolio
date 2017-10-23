@@ -34,6 +34,15 @@ var app = new Vue({
       this.currentSuggestion = this.suggestions[
         (this.suggestions.indexOf(this.currentSuggestion) + change)
         % this.suggestions.length];
+      let self = this;
+      axios.get('/api/projects/search', {
+        params: { uses: this.currentSuggestion.key }
+      }).then(function (response) {
+        self.currentSuggestion.projects = response.data;
+      }).catch(function (error) { console.log(error); });
+    },
+    search: function () {
+      console.log("search");
     }
   },
   computed: {
@@ -49,8 +58,10 @@ var app = new Vue({
           if (alias.toLowerCase().startsWith(query)) return true;
         }
         return false;
-      }).map(function(key) { return techs[key]; });
-      console.log('recomputing');
+      }).map(function(key) {
+        techs[key].key = key;
+        return techs[key];
+      });
       this.currentSuggestion = matches[0];
       return matches;
     },

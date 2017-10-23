@@ -17,8 +17,9 @@ block content
             span {{ item.pretty_name }}
             span.close(@click="remove(index)") x
           input#search(
-            autocomplete="off" v-model.trim="query" @keyup.enter="addFilter()"
-            @keydown.down="changeCurrentSuggestion(1)"
+            autocomplete="off" v-model.trim="query" 
+            @keyup.enter="(query === '') ? search() : addFilter()"
+            @keydown.down="changeCurrentSuggestion(1)" 
             @keydown.up="changeCurrentSuggestion(-1)"
             v-on:keydown.delete="deleteFilter"
             v-bind:placeholder="searchPlaceholder")
@@ -29,6 +30,9 @@ block content
             @click="addFilter(suggestion)") 
               h4 {{ suggestion.pretty_name }}
               p {{ suggestion.summary }}
+              p(v-if="typeof suggestion.projects === 'undefined'") Loading projects...
+              ul
+                li.project(v-for="project of suggestion.projects") {{ project.name }}
       
 block scripts
   script(src='/javascripts/index.js')
