@@ -24,7 +24,9 @@ block content
             v-bind:placeholder="searchPlaceholder")
         #results(v-if="query.length > 0")
           ul
-            li.suggestion(v-for="suggestion of suggestions" v-bind:class="{ highlighted: suggestion === currentSuggestion }") 
+            li.suggestion(v-for="suggestion of suggestions" 
+            v-bind:class="{ highlighted: suggestion === currentSuggestion }"
+            @click="addFilter(suggestion)") 
               {{ suggestion.pretty_name }}
       
 block scripts

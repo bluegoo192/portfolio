@@ -15,7 +15,8 @@ var app = new Vue({
         .then(function (response) { techs = response.data; })
         .catch(function (error) { console.log(error); });
     },
-    addFilter: function () {
+    addFilter: function (suggestion) {
+      if (suggestion) this.currentSuggestion = suggestion;
       if (this.currentSuggestion !== null) {
         this.filters.push(this.currentSuggestion);
         this.currentSuggestion = null;
