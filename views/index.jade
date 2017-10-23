@@ -27,7 +27,8 @@ block content
             li.suggestion(v-for="suggestion of suggestions" 
             v-bind:class="{ highlighted: suggestion === currentSuggestion }"
             @click="addFilter(suggestion)") 
-              {{ suggestion.pretty_name }}
+              h4 {{ suggestion.pretty_name }}
+              p {{ suggestion.summary }}
       
 block scripts
   script(src='/javascripts/index.js')
