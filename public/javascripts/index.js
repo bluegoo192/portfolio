@@ -12,10 +12,11 @@ var app = new Vue({
   methods: {
     loadTechs: function () {
       axios.get('/api/techs')
-        .then(function (response) { techs = response.data; })
-        .catch(function (error) { console.log(error); });
+      .then(function (response) { techs = response.data; })
+      .catch(function (error) { console.log(error); });
     },
     addFilter: function (suggestion) {
+      console.log("addfilter");
       if (suggestion) this.currentSuggestion = suggestion;
       if (this.currentSuggestion !== null) {
         this.filters.push(this.currentSuggestion);
@@ -30,16 +31,22 @@ var app = new Vue({
       this.filters.splice(index, 1);
     },
     changeCurrentSuggestion: function (change) {
-      if (change < 0) change = this.suggestions.length + change;
-      this.currentSuggestion = this.suggestions[
+      if (typeof change === 'number') { // if we're changing by a number
+        if (change < 0) change = this.suggestions.length + change;
+        this.currentSuggestion = this.suggestions[
         (this.suggestions.indexOf(this.currentSuggestion) + change)
         % this.suggestions.length];
-      let self = this;
-      axios.get('/api/projects/search', {
-        params: { uses: this.currentSuggestion.key }
-      }).then(function (response) {
-        self.currentSuggestion.projects = response.data;
-      }).catch(function (error) { console.log(error); });
+      } else { // if we're assigning directly
+        this.currentSuggestion = change;
+      }
+      if (typeof this.currentSuggestion.projects === 'undefined') {
+        let self = this;
+        axios.get('/api/projects/search', {
+          params: { uses: this.currentSuggestion.key }
+        }).then(function (response) {
+          self.currentSuggestion.projects = response.data;
+        }).catch(function (error) { console.log(error); });
+      }
     },
     search: function () {
       console.log("search");

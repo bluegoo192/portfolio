@@ -27,12 +27,13 @@ block content
           ul
             li.suggestion(v-for="suggestion of suggestions" 
             v-bind:class="{ highlighted: suggestion === currentSuggestion }"
-            @click="addFilter(suggestion)") 
+            @click="changeCurrentSuggestion(suggestion)") 
               h4 {{ suggestion.pretty_name }}
-              p {{ suggestion.summary }}
-              p(v-if="typeof suggestion.projects === 'undefined'") Loading projects...
-              ul
-                li.project(v-for="project of suggestion.projects") {{ project.name }}
+              p.summary {{ suggestion.summary }}
+              .projects
+                p(v-if="typeof suggestion.projects === 'undefined'") Loading projects...
+                ul
+                  li.project(v-for="project of suggestion.projects") {{ project.name }}
       
 block scripts
   script(src='/javascripts/index.js')

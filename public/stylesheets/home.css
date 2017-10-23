@@ -30,9 +30,17 @@
 li.suggestion {
   padding: 4px 8px;
 }
+li.suggestion .summary,
+li.suggestion .projects {
+  display: none;
+}
 li.suggestion.highlighted {
   background-color: #1476fb;
   color: #f9fafb;
+}
+li.suggestion.highlighted .summary,
+li.suggestion.highlighted .projects {
+  display: block;
 }
 .filter {
   padding: 4px 8px;
