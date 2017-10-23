@@ -18,11 +18,14 @@ block content
             span.close(@click="remove(index)") x
           input#search(
             autocomplete="off" v-model.trim="query" @keyup.enter="addFilter"
-            v-on:keydown.delete="deleteFilter" list="techs"
+            @keydown.down="changeCurrentSuggestion(1)"
+            @keydown.up="changeCurrentSuggestion(-1)"
+            v-on:keydown.delete="deleteFilter"
             v-bind:placeholder="searchPlaceholder")
         #results(v-if="query.length > 0")
           ul
-            li.suggestion(v-for="suggestion of suggestions") {{ suggestion.pretty_name }}
+            li.suggestion(v-for="suggestion of suggestions" v-bind:class="{ highlighted: suggestion === currentSuggestion }") 
+              {{ suggestion.pretty_name }}
       
 block scripts
   script(src='/javascripts/index.js')

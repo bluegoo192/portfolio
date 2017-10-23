@@ -6,7 +6,8 @@ var app = new Vue({
   el: '#app',
   data: {
     query: '',
-    filters: []
+    filters: [],
+    currentSuggestion: null
   },
   methods: {
     loadTechs: function () {
@@ -15,9 +16,10 @@ var app = new Vue({
         .catch(function (error) { console.log(error); });
     },
     addFilter: function () {
-      if (this.suggestions.length > 0) {
-        this.filters.push(this.suggestions.shift());
-        this.query = ''
+      if (this.currentSuggestion !== null) {
+        this.filters.push(this.currentSuggestion);
+        this.currentSuggestion = null;
+        this.query = '';
       }
     },
     deleteFilter: function () {
@@ -25,6 +27,12 @@ var app = new Vue({
     },
     remove: function (index) {
       this.filters.splice(index, 1);
+    },
+    changeCurrentSuggestion: function (change) {
+      if (change < 0) change = this.suggestions.length + change;
+      this.currentSuggestion = this.suggestions[
+        (this.suggestions.indexOf(this.currentSuggestion) + change)
+        % this.suggestions.length];
     }
   },
   computed: {
@@ -32,7 +40,7 @@ var app = new Vue({
       if (techs === null) { return []; }
       let query = this.query.toLowerCase();
       let self = this;
-      return Object.keys(techs).filter(function (techKey) {
+      let matches = Object.keys(techs).filter(function (techKey) {
         if (self.filters.includes(techs[techKey])) return false;
         if (techs[techKey].pretty_name.toLowerCase().startsWith(query)) return true;
         if (techKey.startsWith(query)) return true;
@@ -41,6 +49,9 @@ var app = new Vue({
         }
         return false;
       }).map(function(key) { return techs[key]; });
+      console.log('recomputing');
+      this.currentSuggestion = matches[0];
+      return matches;
     },
     searchPlaceholder: function () {
       return (this.filters.length > 0) ? '' : "Search skills and languages";

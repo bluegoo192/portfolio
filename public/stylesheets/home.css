@@ -30,7 +30,7 @@
 li.suggestion {
   padding: 4px 8px;
 }
-li.suggestion:first-child {
+li.suggestion.highlighted {
   background-color: #1476fb;
   color: #f9fafb;
 }
