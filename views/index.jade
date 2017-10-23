@@ -17,7 +17,7 @@ block content
             span {{ item.pretty_name }}
             span.close(@click="remove(index)") x
           input#search(
-            autocomplete="off" v-model.trim="query" @keyup.enter="addFilter"
+            autocomplete="off" v-model.trim="query" @keyup.enter="addFilter()"
             @keydown.down="changeCurrentSuggestion(1)"
             @keydown.up="changeCurrentSuggestion(-1)"
             v-on:keydown.delete="deleteFilter"
