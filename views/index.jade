@@ -11,29 +11,30 @@ block content
           h2 I like computer stuff.
     .screen
       .content.center
+        p hi
         // h1 Pick my brain
-        #searchbox.flex
-          .filter(v-for="(item, index) of filters")
-            span {{ item.pretty_name }}
-            span.close(@click="remove(index)") x
-          input#search(
-            autocomplete="off" v-model.trim="query" 
-            @keyup.enter="(query === '') ? search() : addFilter()"
-            @keydown.down="changeCurrentSuggestion(1)" 
-            @keydown.up="changeCurrentSuggestion(-1)"
-            v-on:keydown.delete="deleteFilter"
-            v-bind:placeholder="searchPlaceholder")
-        #results(v-if="query.length > 0")
-          ul
-            li.suggestion(v-for="suggestion of suggestions" 
-            v-bind:class="{ highlighted: suggestion === currentSuggestion }"
-            @click="changeCurrentSuggestion(suggestion)") 
-              h4 {{ suggestion.pretty_name }}
-              p.summary {{ suggestion.summary }}
-              .projects
-                p(v-if="typeof suggestion.projects === 'undefined'") Loading projects...
-                ul
-                  li.project(v-for="project of suggestion.projects") {{ project.name }}
+        //- #searchbox.flex
+        //-   .filter(v-for="(item, index) of filters")
+        //-     span {{ item.pretty_name }}
+        //-     span.close(@click="remove(index)") x
+        //-   input#search(
+        //-     autocomplete="off" v-model.trim="query" 
+        //-     @keyup.enter="(query === '') ? search() : addFilter()"
+        //-     @keydown.down="changeCurrentSuggestion(1)" 
+        //-     @keydown.up="changeCurrentSuggestion(-1)"
+        //-     v-on:keydown.delete="deleteFilter"
+        //-     v-bind:placeholder="searchPlaceholder")
+        //- #results(v-if="query.length > 0")
+        //-   ul
+        //-     li.suggestion(v-for="suggestion of suggestions" 
+        //-     v-bind:class="{ highlighted: suggestion === currentSuggestion }"
+        //-     @click="changeCurrentSuggestion(suggestion)") 
+        //-       h4 {{ suggestion.pretty_name }}
+        //-       p.summary {{ suggestion.summary }}
+        //-       .projects
+        //-         p(v-if="typeof suggestion.projects === 'undefined'") Loading projects...
+        //-         ul
+        //-           li.project(v-for="project of suggestion.projects") {{ project.name }}
       
 block scripts
   script(src='/javascripts/index.js')
